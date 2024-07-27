@@ -1,14 +1,12 @@
 import React from 'react';
 
 import {SafeAreaView} from 'react-native';
-import Item from './components/Item/Item.js';
+import MyText from './components/MyText/MyText.js';
 
 function App(): React.JSX.Element {
   return (
     <SafeAreaView>
-      <Item name={'책상'} price={20} />
-      <Item name={'의자'} price={100} />
-      <Item name={'침대'} price={200} />
+      <MyText />
     </SafeAreaView>
   );
 }
