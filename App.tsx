@@ -1,29 +1,19 @@
-import React, {useRef} from 'react';
-import {
-  SafeAreaView,
-  Text,
-  ScrollView,
-  Button,
-  View,
-  StyleSheet,
-} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {SafeAreaView, Text, StyleSheet} from 'react-native';
 function App(): React.JSX.Element {
-  let array = Array(100).fill(0);
-  const scrollViewRef = useRef(null);
-  const handleClick = () => {
-    scrollViewRef.current.scrollTo({x: 0, y: 0, animated: true});
-  };
+  const [text, setText] = useState(0);
+
+  useEffect(() => {
+    console.log('의존성 배열 있음');
+  }, [text]);
+
+  useEffect(() => {
+    console.log('렌더링 됐습니다!');
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.scrollContainer}>
-        <ScrollView ref={scrollViewRef}>
-          {array.map((item, index) => (
-            <Text key={index}>안녕하세요!{index}</Text>
-          ))}
-        </ScrollView>
-        <Button onPress={handleClick} title={'스크롤 맨 위로'} />
-      </View>
+      <Text onPress={() => setText(text + 1)}>{text}</Text>
     </SafeAreaView>
   );
 }
