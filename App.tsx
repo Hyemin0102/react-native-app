@@ -1,31 +1,27 @@
-import React, {useEffect, useState} from 'react';
-import {SafeAreaView, Text, StyleSheet} from 'react-native';
+import React, {useState} from 'react';
+import {Button, SafeAreaView, Text, View} from 'react-native';
+import {ThemeContext} from './context/ThemeContext.js';
+import HomeScreen from './components/HomeScreen/HomeScreen.js';
 function App(): React.JSX.Element {
-  const [text, setText] = useState(0);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
-  useEffect(() => {
-    console.log('의존성 배열 있음');
-  }, [text]);
-
-  useEffect(() => {
-    console.log('렌더링 됐습니다!');
-  }, []);
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+  };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text onPress={() => setText(text + 1)}>{text}</Text>
-    </SafeAreaView>
+    //컨텍스트 감싸기, 전달할 값은 다크모드 상태
+    <ThemeContext.Provider value={isDarkMode}>
+      <SafeAreaView>
+        <View style={{backgroundColor: isDarkMode ? '#222222' : 'white'}}>
+          <Text>안녕하세요</Text>
+          <Button title={'모드 변경'} onPress={toggleTheme} />
+        </View>
+        <HomeScreen />
+      </SafeAreaView>
+    </ThemeContext.Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  scrollContainer: {
-    flex: 1,
-  },
-});
 
 export default App;
 
