@@ -1,15 +1,41 @@
-import React from 'react';
-
-import {SafeAreaView} from 'react-native';
-import MyText from './components/MyText/MyText.js';
-
+import React, {useRef} from 'react';
+import {
+  SafeAreaView,
+  Text,
+  ScrollView,
+  Button,
+  View,
+  StyleSheet,
+} from 'react-native';
 function App(): React.JSX.Element {
+  let array = Array(100).fill(0);
+  const scrollViewRef = useRef(null);
+  const handleClick = () => {
+    scrollViewRef.current.scrollTo({x: 0, y: 0, animated: true});
+  };
+
   return (
-    <SafeAreaView>
-      <MyText />
+    <SafeAreaView style={styles.container}>
+      <View style={styles.scrollContainer}>
+        <ScrollView ref={scrollViewRef}>
+          {array.map((item, index) => (
+            <Text key={index}>안녕하세요!{index}</Text>
+          ))}
+        </ScrollView>
+        <Button onPress={handleClick} title={'스크롤 맨 위로'} />
+      </View>
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  scrollContainer: {
+    flex: 1,
+  },
+});
 
 export default App;
 
