@@ -2,9 +2,12 @@ import React, {useState} from 'react';
 import {Button, SafeAreaView, Text, View} from 'react-native';
 import {ThemeContext} from './context/ThemeContext.js';
 import HomeScreen from './components/HomeScreen/HomeScreen.js';
+import useToggle from './customHooks/useToggle.js';
 function App(): React.JSX.Element {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
+  //토글로 값 전환해주는 커스텀훅
+  const [isOn, toggleIsOn] = useToggle(false);
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
   };
@@ -14,10 +17,14 @@ function App(): React.JSX.Element {
     <ThemeContext.Provider value={isDarkMode}>
       <SafeAreaView>
         <View style={{backgroundColor: isDarkMode ? '#222222' : 'white'}}>
-          <Text>안녕하세요</Text>
+          <Text style={{color: isDarkMode ? 'white' : '#222222'}}>
+            안녕하세요
+          </Text>
           <Button title={'모드 변경'} onPress={toggleTheme} />
         </View>
         <HomeScreen />
+        <Button title={'Toggle'} onPress={toggleIsOn} />
+        <Text>{isOn ? 'ON' : 'OFF'}</Text>
       </SafeAreaView>
     </ThemeContext.Provider>
   );
