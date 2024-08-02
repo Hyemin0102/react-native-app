@@ -1,125 +1,20 @@
-import React, {useState} from 'react';
-import {
-  Text,
-  ScrollView,
-  SafeAreaView,
-  TextInput,
-  Button,
-  Pressable,
-} from 'react-native';
+import React from 'react';
+import {View} from 'react-native';
 
 function App(): React.JSX.Element {
-  // const [imageSource, setImageSource] = useState({uri: 'https://example.com'});
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <TextInput
-          value={email}
-          keyboardType={'email-address'}
-          style={{borderWidth: 1, borderRadius: 4, padding: 10}}
-          placeholder={'이메일을 입력하세요'}
-          onChangeText={value => {
-            setEmail(value);
-          }}
-        />
-        <TextInput
-          value={password}
-          secureTextEntry={true}
-          style={{borderWidth: 1, borderRadius: 4, padding: 10}}
-          placeholder={'비밀번호 입력하세요'}
-          onChangeText={value => {
-            setPassword(value);
-          }}
-        />
-        <Pressable
-          disabled={email.length === 0 || password.length < 4}
-          style={[
-            {backgroundColor: 'black'},
-            (email.length === 0 || password.length < 4) && {opacity: 0.5},
-          ]}
-          onPress={() => {
-            console.log('clicked');
-            console.log(email, password);
-          }}>
-          <Text
-            style={{
-              color: 'white',
-              padding: 10,
-              textAlign: 'center',
-            }}>
-            submit(Pressable)
-          </Text>
-        </Pressable>
-        {/*<Button title={'submit'} color={'black'} />*/}
-      </ScrollView>
-      {/*<Image*/}
-      {/*  source={imageSource}*/}
-      {/*  style={{width: 200, height: 200, backgroundColor: 'gray'}}*/}
-      {/*  resizeMode={'cover'}*/}
-      {/*  onError={() => {*/}
-      {/*    console.log('에러 이미지');*/}
-      {/*    setImageSource(require('./assets/images/appDown_sect02_img.webp'));*/}
-      {/*  }}*/}
-      {/*/>*/}
-      {/*<Image*/}
-      {/*  source={{*/}
-      {/*    uri: 'https://i.pinimg.com/474x/d9/b5/df/d9b5dfebade0f8b407f0559d257cfc7c.jpg',*/}
-      {/*  }}*/}
-      {/*  style={{width: 200, height: 200}}*/}
-      {/*  resizeMode={'cover'}*/}
-      {/*/>*/}
-      {/*<TextInput*/}
-      {/*  style={{borderWidth: 1, margin: 20, padding: 10, borderRadius: 8}}*/}
-      {/*  value={textValue}*/}
-      {/*  onChangeText={value => setTextValue(value)}*/}
-      {/*  placeholder={'이름을 입력해주세요!'}*/}
-      {/*  returnKeyType={'search'}*/}
-      {/*/>*/}
-      {/*<TextInput*/}
-      {/*  style={{borderWidth: 1, margin: 20, padding: 10, borderRadius: 8}}*/}
-      {/*  value={pwValue}*/}
-      {/*  onChangeText={value => setPwValue(value)}*/}
-      {/*  secureTextEntry={true}*/}
-      {/*  placeholder={'비밀번호를 입력해주세요'}*/}
-      {/*/>*/}
-      {/*<View style={{borderWidth: 3}}>*/}
-      {/*  <ScrollView*/}
-      {/*    onScroll={() => {*/}
-      {/*      console.log('사용자가 스크롤할 때 발생하는 상황 제어할수있음');*/}
-      {/*    }}*/}
-      {/*    contentContainerStyle={{backgroundColor: 'gray'}}*/}
-      {/*    showsVerticalScrollIndicator={true}*/}
-      {/*    horizontal={true}>*/}
-      {/*    <Image*/}
-      {/*      source={{*/}
-      {/*        uri: 'https://i.pinimg.com/474x/d9/b5/df/d9b5dfebade0f8b407f0559d257cfc7c.jpg',*/}
-      {/*      }}*/}
-      {/*      style={{width: 500, height: 500}}*/}
-      {/*      resizeMode={'contain'}*/}
-      {/*    />*/}
-      {/*    <Image*/}
-      {/*      source={{*/}
-      {/*        uri: 'https://i.pinimg.com/474x/d9/b5/df/d9b5dfebade0f8b407f0559d257cfc7c.jpg',*/}
-      {/*      }}*/}
-      {/*      style={{width: 500, height: 500}}*/}
-      {/*      resizeMode={'contain'}*/}
-      {/*    />*/}
-      {/*    <Image*/}
-      {/*      source={{*/}
-      {/*        uri: 'https://i.pinimg.com/474x/d9/b5/df/d9b5dfebade0f8b407f0559d257cfc7c.jpg',*/}
-      {/*      }}*/}
-      {/*      style={{width: 500, height: 500}}*/}
-      {/*      resizeMode={'contain'}*/}
-      {/*    />*/}
-      {/*  </ScrollView>*/}
-      {/*</View>*/}
-    </SafeAreaView>
+    <View style={{flex: 1, backgroundColor: 'gray'}}>
+      <View style={{flex: 1, flexDirection: 'row'}}>
+        <View style={{flex: 1, backgroundColor: 'red'}} />
+        <View style={{flex: 1, backgroundColor: 'orange'}} />
+      </View>
+      <View style={{flex: 1}}>
+        <View style={{flex: 3, backgroundColor: 'yellow'}} />
+        <View style={{flex: 3, backgroundColor: 'green'}} />
+      </View>
+    </View>
   );
 }
-
 export default App;
 
 /*
@@ -131,13 +26,17 @@ View 컴포넌트란?
 Props & PropsType
 - props 의 타입 설정하고 타입 맞지 않는 경우 에러 발생시킴
 
-returnKeyType
+<TextInput>
+returnKeyType - 키패드에서 완료 버튼 텍스트와 기능 설정
 done-완료
 go-검색이나 다른 작업에 사용될 때 이동키
 next-입력 필드 여러개
 search-입력 검색
 
+<Button> - 스타일 지정 자유롭게 안됨
+<pressable> - 단일 컴포넌트, 터치 이벤트 처리, 시각적 피드백 제공(터치 상태에 따라 스타일 동적 변경)
+
 ✅
 스크롤뷰의 contentContainerStyle -> 내부 콘텐츠 감싸는 뷰의 스타일 지정.
-테두리는 부모컨텐츠에서 감싸서 사용해야함
+테두리는 부모컨텐츠에서 감싸서 사용해야함(ios, android 다름)
  */
